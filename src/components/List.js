@@ -93,12 +93,11 @@ class List extends Component {
   render(){
     return(
       <View style={{flex:1}}>
-
         <View>
           <Text style={styles.text}>My List</Text>
             <FlatList
                 horizontal
-                SeparatorComponent = {() => <View style={{width: 5}} />}
+                SeparatorComponent = {() => <View style={styles.separatorWidth}/>}
                 renderItem={({item}) => this._renderItem(item)}
                 data={show_first}
             />
@@ -108,7 +107,7 @@ class List extends Component {
           <Text style={styles.text}>Top Picks For You</Text>
             <FlatList
                 horizontal
-                SeparatorComponent = {() => <View style={{width: 5}} />}
+                SeparatorComponent = {() => <View style={styles.separatorWidth}/>}
                 renderItem={({item}) => this._renderItem(item)}
                 data={show_second}
             />
@@ -120,7 +119,10 @@ class List extends Component {
 
 const styles = StyleSheet.create({
   text:{
-    color: '#fff'
+    color: '#fff',
+  },
+  separatorWidth:{
+    width:5,
   }
 })
 
