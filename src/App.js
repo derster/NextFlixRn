@@ -31,17 +31,21 @@ class App extends Component {
   }
    render(){
      return(
-       <View style={styles.container}>
+
          <SideMenu
            menu={<Menu/>}
            isOpen={this.state.isOpen}
            onChange={(isOpen) => this.updateMenu(isOpen)}
            >
-             <Header toggle={this.toggle.bind(this)}/>
-             <Slider />
-             <List />
+          <View style={styles.container}>
+              <Header toggle={this.toggle.bind(this)}/>
+              <Slider />
+              <List />
+          </View>
+
+
           </SideMenu>
-       </View>
+     
      )
    }
 }

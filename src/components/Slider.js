@@ -41,7 +41,7 @@ export default class extends Component{
       return(
             <View>
               <Swiper
-                  autoplay 
+                  //autoplay
                   height={240}
                 >
                   {

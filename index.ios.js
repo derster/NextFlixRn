@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import App from './src/App';
+import IndexApp from './src/IndexApp';
 import {
   AppRegistry
 } from 'react-native';
 
 
-AppRegistry.registerComponent('NextFlixRn', () => App);
+AppRegistry.registerComponent('NextFlixRn', () => IndexApp);
