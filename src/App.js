@@ -20,6 +20,11 @@ class App extends Component {
     }
   }
 
+  static navigationOptions = {
+    header: {
+      visible: null,
+    }
+  }
 
   toggle(){
     this.setState({
@@ -33,19 +38,19 @@ class App extends Component {
      return(
 
          <SideMenu
-           menu={<Menu/>}
-           isOpen={this.state.isOpen}
-           onChange={(isOpen) => this.updateMenu(isOpen)}
-           >
-          <View style={styles.container}>
-              <Header toggle={this.toggle.bind(this)}/>
-              <Slider />
-              <List />
-          </View>
+             menu={<Menu/>}
+             isOpen={this.state.isOpen}
+             onChange={(isOpen) => this.updateMenu(isOpen)}
+         >
+            <View style={styles.container}>
+                <Header navigation={this.props.navigation} toggle={this.toggle.bind(this)}/>
+                <Slider />
+                <List navigation={this.props.navigation} />
+            </View>
 
 
           </SideMenu>
-     
+
      )
    }
 }
