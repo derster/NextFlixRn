@@ -2517,10 +2517,10 @@ class List extends Component {
     const {navigate} = this.props.navigation
     return(
       <TouchableWithoutFeedback onPress={
-            () => navigate('Details', {item: item})}
-        >
-            <Image style={{width: 120, height: 180}} source={{uri: item.image}}/>
-        </TouchableWithoutFeedback>
+          () => navigate('Details', {item: item})}
+      >
+          <Image style={{width: 120, height: 180}} source={{uri: item.image}}/>
+      </TouchableWithoutFeedback>
     )
   }
   render(){

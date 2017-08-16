@@ -47,8 +47,6 @@ class App extends Component {
                 <Slider />
                 <List navigation={this.props.navigation} />
             </View>
-
-
           </SideMenu>
 
      )

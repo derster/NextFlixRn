@@ -7,19 +7,41 @@ import{
   TouchableHighlight,
   TouchableWithoutFeedback,
   ScrollView,
-  Dimensions
+  Dimensions,
+  Share
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import TabsEpisodes from './TabsEpisodes';
+import * as Animatable from 'react-native-animatable'
+import TextGradient from 'react-native-linear-gradient';
 
 const {width, height} = Dimensions.get('window')
 
 class Details extends Component{
+    onShare(){
+        Share.share({
+            title: 'Designated Survivor',
+            url: 'www.youtube.com',
+            message: 'Awesome Tv Show'
+        }, {
+            //android
+            dialogTitle: 'Share this awesome content',
+            //ios
+            excludeActivityTypes: [
+                'com.apple.UIKit.activity.PostToTwitter'
+            ]
+        })
+    }
   render(){
     const {goBack} = this.props.navigation
     const {params} = this.props.navigation.state
     const {thumbnail, cast, description, year, creator, numOfEpisodes, season} = params.item.details
+    const {episodes} = params.item.details
+    const {name} = params.item
+    const {navigate} = this.props.navigation
 
+    
 
     return(
       <ScrollView style={styles.container}>
@@ -42,7 +64,7 @@ class Details extends Component{
 
         <View style={styles.buttonPlay}>
             <TouchableWithoutFeedback
-                onPress={() => navigate('Video', {name: name})}
+                onPress={() => navigate('VideoPlayerView', {name: name})}
             >
                 <View>
                     <Icon
@@ -53,6 +75,12 @@ class Details extends Component{
                     />
                 </View>
             </TouchableWithoutFeedback>
+        </View>
+
+        <View style={styles.nameContainer}>
+                <Text style={[styles.text, styles.titleShow]}>
+                    {name}
+                </Text>
         </View>
 
         <View style={styles.descriptionContainer}>
@@ -69,7 +97,34 @@ class Details extends Component{
               <Text style={[styles.text]}>Cast: {cast}</Text>
               <Text style={[styles.text]}>Creator: {creator}</Text>
 
+              <View style={styles.shareListIcons}>
+                <View style={styles.myListIcon}>
+                  <Icon
+                      style={styles.listIcon}
+                      name="check"
+                      color="grey"
+                      size={25}
+                  />
+                  <Text style={styles.text}>My List</Text>
+                </View>
+
+                <TouchableHighlight onPress={this.onShare}>
+                    <View style={styles.myShareIcon}>
+                        <Icon
+                            style={styles.shareIcon}
+                            name="share-alt"
+                            color="grey"
+                            size={25}
+                        />
+                        <Text style={styles.text}>Share</Text>
+                    </View>
+                </TouchableHighlight>
+                
+              </View>
+
         </View>
+
+        <TabsEpisodes data={episodes}/>
 
       </ScrollView>
 
